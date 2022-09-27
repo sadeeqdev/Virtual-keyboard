@@ -13,7 +13,7 @@ export default {
     },
     methods:{
         textClick(){
-            this.$emit('input-text')
+            this.$emit('input-text', this.value.lowercase)
         }
     }
 

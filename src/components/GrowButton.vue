@@ -1,5 +1,5 @@
 <template>
-    <div class="grow md:h-8 lg:h-14 xl:h-16 flex justify-center items-center rounded lg:rounded-lg shadow-sm bg-gray-50 hover:bg-gray-200 hover:cursor-pointer">
+    <div @click="textClick"  class="grow md:h-8 lg:h-14 xl:h-16 flex justify-center items-center rounded lg:rounded-lg shadow-sm bg-gray-50 hover:bg-gray-200 hover:cursor-pointer">
         <div class="text-gray-900 text-sm lg:text-xl">
             {{value}}
         </div>
@@ -10,8 +10,12 @@
 export default {
     props: {
         value: String
+    },
+    methods: {
+        textClick() {
+            this.$emit('input-text', this.value)
+        }
     }
-
 }
 </script>
 

@@ -2,7 +2,7 @@
   <div class="flex justify-center mt-40">
     <TextField  :textInput="input" />
   </div>
-  <KeyPad @clicked="onClickChild"/>
+  <KeyPad @clicked-keyboard="onClickChild"/>
 </template>
 
 <script>
@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     onClickChild(value) {
-      console.log("hello")
+      this.input = value
     }
   }
 

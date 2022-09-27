@@ -2,32 +2,32 @@
     <div class="absolute left-0 right-0 bottom-10 w-1/1 xl:w-5/6 2xl:w-7/12 mx-2 lg:mx-5 xl:mx-auto h-auto bg-gray-300 rounded-sm lg:rounded-lg px-1.5 lg:px-2 space-y-1 lg:space-y-2 py-1.5 lg:py-2">
         <div class="flex space-x-1 lg:space-x-2 justify-center">
             <div v-for="rows, index in firstrow" :key="index" class="flex">
-                <Button :value="rows"/>
+                <Button :value="rows"  @input-text="onClickButton"/>
             </div>
-            <GrowButton value="<="/>  
+            <GrowButton value="<=" @input-text="onClickButton"/>  
         </div> 
         <div class="flex space-x-1 lg:space-x-2 justify-center">
-            <GrowButton value="tab" />
+            <GrowButton value="tab"  @input-text="onClickButton"/>
             <div v-for="rows, index in secondrow" :key="index" class="flex">
-                <Button :value="rows" />
+                <Button :value="rows"  @input-text="onClickButton"/>
             </div>
         </div>
         <div class="flex space-x-1 lg:space-x-2 justify-center">
-            <GrowButton value="caps" />
+            <GrowButton value="caps" @input-text="onClickButton"/>
             <div v-for="rows, index in thirdrow" :key="index" class="flex">
-                <Button :value="rows" />
+                <Button :value="rows"  @input-text="onClickButton"/>
             </div>
-            <GrowButton value="enter" />
+            <GrowButton value="enter" @input-text="onClickButton"/>
         </div>
         <div class="flex space-x-1 lg:space-x-2 justify-center">
-            <GrowButton value="shift" />
+            <GrowButton value="shift"  @input-text="onClickButton"/>
             <div v-for="rows, index in fourthrow" :key="index" class="flex">
-                <Button :value="rows" />
+                <Button :value="rows"  @input-text="onClickButton"/>
             </div>
-            <GrowButton value="shift" />
+            <GrowButton value="shift"  @input-text="onClickButton"/>
         </div>
-        <div class="flex space-x-2 justify-center">
-            <GrowButton value="space" @input-text="onClickButton" @click="onClickButton" />
+        <div class="flex space-x-2 justify-center" >
+            <GrowButton value="space" @input-text="onClickButton"/>
         </div>
     </div>
 </template>
@@ -99,8 +99,8 @@ export default {
         }
     },
     methods: {
-        onClickButton(event) {
-            this.$emit('clicked', 'someValue')
+        onClickButton(value) {
+            this.$emit('clicked-keyboard', value)
         }
     }
 }
