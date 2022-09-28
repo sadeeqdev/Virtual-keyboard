@@ -2,27 +2,27 @@
     <div class="absolute left-0 right-0 bottom-10 w-1/1 xl:w-5/6 2xl:w-7/12 mx-2 lg:mx-5 xl:mx-auto h-auto bg-gray-300 rounded-sm lg:rounded-lg px-1.5 lg:px-2 space-y-1 lg:space-y-2 py-1.5 lg:py-2">
         <div class="flex space-x-1 lg:space-x-2 justify-center">
             <div v-for="rows, index in firstrow" :key="index" class="flex">
-                <Button :value="rows"  @input-text="onClickButton"/>
+                <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue"/>
             </div>
             <GrowButton value="backspace" @input-text="onClickButton"/>  
         </div> 
         <div class="flex space-x-1 lg:space-x-2 justify-center">
             <GrowButton value="tab"  @input-text="onClickButton"/>
             <div v-for="rows, index in secondrow" :key="index" class="flex">
-                <Button :value="rows"  @input-text="onClickButton"/>
+                <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue"/>
             </div>
         </div>
         <div class="flex space-x-1 lg:space-x-2 justify-center">
             <GrowButton value="caps" @input-text="onClickButton"/>
             <div v-for="rows, index in thirdrow" :key="index" class="flex">
-                <Button :value="rows"  @input-text="onClickButton"/>
+                <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue"/>
             </div>
             <GrowButton value="enter" @input-text="onClickButton"/>
         </div>
         <div class="flex space-x-1 lg:space-x-2 justify-center">
-            <GrowButton value="shift"  @input-text="onClickButton"/>
+            <GrowButton value="shift" @input-text="onClickButton" />
             <div v-for="rows, index in fourthrow" :key="index" class="flex">
-                <Button :value="rows"  @input-text="onClickButton"/>
+                <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue"/>
             </div>
             <GrowButton value="shift"  @input-text="onClickButton"/>
         </div>
@@ -39,6 +39,7 @@ export default {
     components: { Button, GrowButton },
     data(){
         return{
+            shiftValue: false,
             firstrow: [
                 { lowercase: '`', uppercase: '~' },
                 { lowercase: '1', uppercase: '!' },
@@ -100,8 +101,13 @@ export default {
     },
     methods: {
         onClickButton(value) {
-            this.$emit('clicked-keyboard', value)
-        }
+            if(value == 'shift'){
+                this.shiftValue = !this.shiftValue
+                console.log('Shift Clicked', this.shiftValue)
+            }else{
+                this.$emit('clicked-keyboard', value)
+            }
+        },
     }
 }
 </script>
