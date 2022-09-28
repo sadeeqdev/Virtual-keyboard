@@ -57,8 +57,6 @@ export default {
                 this.shiftValue = false
 
             }
-
-
         },
         resetToggle(e) {
             let cmd = e.key

@@ -5,7 +5,7 @@
   <div class="flex justify-center mt-32" @click="toggleKeyboard = true">
     <TextField :textInput="textOutput" @keyBoardSwitch="onKeyboardSwitch"/>
   </div>
-  <div v-if="toggleKeyboard">
+  <div v-show="toggleKeyboard">
       <KeyPad @clicked-keyboard="onClickButton" :keyboardValue="keyboardValue"/>
   </div>
 </template>
