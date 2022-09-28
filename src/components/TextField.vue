@@ -1,6 +1,6 @@
 <template>
     <div>
-        <textarea type="text" placeholder="Type something"  class="border border-1 border-gray-500 rounded-md text-2xl py-3 px-4" v-model="value" ref="textfield" @change="setInput"></textarea>
+        <textarea type="text" placeholder="Type something"  class="border border-1 border-gray-500 rounded-md text-2xl py-3 px-4" :value="value" ref="textfield" @change="setInput"></textarea>
     </div>
 </template>
 
@@ -32,6 +32,6 @@ export default {
                 this.checkTextfield()
             }
         }
-    }
+    },
 }
 </script>

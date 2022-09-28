@@ -127,6 +127,14 @@ export default {
                 this.textOutput = this.textArray.join('')
             }
             this.$emit('clicked-keyboard', this.textOutput)
+        },
+        removeChar(e){
+            if (e.keyCode == 8){
+                this.textArray.pop()
+                this.textOutput = this.textArray.join('')
+            }
+            this.$emit('clicked-keyboard', this.textOutput)
+
         }
     },
     watch: {
@@ -135,6 +143,14 @@ export default {
             this.textOutput = this.textArray.join('')
             this.$emit('clicked-keyboard', this.textOutput)
         }
-    }
+    },
+
+    created() {
+        window.addEventListener('keydown', this.removeChar);
+    },
+    destroyed() {
+        window.removeEventListener('keydown', this.removeChar);
+
+    },
 }
 </script>
