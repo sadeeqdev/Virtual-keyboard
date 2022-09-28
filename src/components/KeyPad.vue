@@ -40,6 +40,8 @@ export default {
     data(){
         return{
             shiftValue: false,
+            textArray: [],
+            textOutput: '',
             firstrow: [
                 { lowercase: '`', uppercase: '~' },
                 { lowercase: '1', uppercase: '!' },
@@ -103,12 +105,23 @@ export default {
         onClickButton(value) {
             if(value == 'shift'){
                 this.shiftValue = !this.shiftValue
-                console.log('Shift Clicked', this.shiftValue)
-            }else{
-                this.$emit('clicked-keyboard', value)
+            }else if (value == "backspace") {
+                this.textArray.pop()
+                this.textOutput = this.textArray.join('')
+            } else if (value == "enter") {
+                this.textArray.push('\r\n')
+                this.textOutput = this.textArray.join('')
+            } else if (value == "tab") {
+                this.textArray.push('      ')
+                this.textOutput = this.textArray.join('')
             }
-        },
-    }
+            else {
+                this.textArray.push(value)
+                this.textOutput = this.textArray.join('')
+            }
+            this.$emit('clicked-keyboard', this.textOutput)
+        }
+}
 }
 </script>
 

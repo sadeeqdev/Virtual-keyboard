@@ -2,7 +2,7 @@
   <div class="flex justify-center mt-40">
     <TextField  :textInput="textOutput" />
   </div>
-  <KeyPad @clicked-keyboard="onClickChild"/>
+  <KeyPad @clicked-keyboard="onClickButton"/>
 </template>
 
 <script>
@@ -14,26 +14,12 @@ export default {
   components: { TextField, KeyPad },
   data(){
     return {
-      textArray: [],
       textOutput: ''
     }
   },
   methods: {
-    onClickChild(value) {
-      if (value == "backspace") {
-        this.textArray.pop()
-        this.textOutput = this.textArray.join('')
-      } else if (value == "enter") {
-        this.textArray.push('\r\n')
-        this.textOutput = this.textArray.join('')
-      } else if (value == "tab") {
-        this.textArray.push('      ')
-        this.textOutput = this.textArray.join('')
-      }
-      else {
-        this.textArray.push(value)
-        this.textOutput = this.textArray.join('')
-      }
+    onClickButton(value) {
+      this.textOutput = value
     }
   }
 

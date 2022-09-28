@@ -14,15 +14,11 @@ export default {
             value: this.textInput,
         }
     },
-    methods: {
-
-    },
     watch: {
         textInput: function (newVal) {
             this.value = newVal
         }
     }
-
 }
 </script>
 
