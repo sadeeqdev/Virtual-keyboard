@@ -2,27 +2,27 @@
     <div class="absolute left-0 right-0 bottom-10 w-1/1 xl:w-5/6 2xl:w-7/12 mx-2 lg:mx-5 xl:mx-auto h-auto bg-gray-300 rounded-sm lg:rounded-lg px-1.5 lg:px-2 space-y-1 lg:space-y-2 py-1.5 lg:py-2" @click.right.prevent>
         <div class="flex space-x-1 lg:space-x-2 justify-center">
             <div v-for="rows, index in firstrow" :key="index" class="flex">
-                <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue"/>
+                <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue" :checkCaps="false"/>
             </div>
             <GrowButton value="backspace" keyCode="8" @input-text="onClickButton"/>  
         </div> 
         <div class="flex space-x-1 lg:space-x-2 justify-center">
             <GrowButton value="tab"  keyCode="9" @input-text="onClickButton"/>
             <div v-for="rows, index in secondrow" :key="index" class="flex">
-                <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue"/>
+                <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue" :checkCaps="capsValue"/>
             </div>
         </div>
         <div class="flex space-x-1 lg:space-x-2 justify-center">
             <GrowButton value="caps" keyCode="20" @input-text="onClickButton"/>
             <div v-for="rows, index in thirdrow" :key="index" class="flex">
-                <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue"/>
+                <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue" :checkCaps="capsValue"/>
             </div>
             <GrowButton value="enter" keyCode="13" @input-text="onClickButton"/>
         </div>
         <div class="flex space-x-1 lg:space-x-2 justify-center">
             <GrowButton value="shift" keyCode="16" @input-text="onClickButton" />
             <div v-for="rows, index in fourthrow" :key="index" class="flex">
-                <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue"/>
+                <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue" :checkCaps="capsValue"/>
             </div>
             <GrowButton value="shift" keyCode="16" @input-text="onClickButton"/>
         </div>
@@ -43,6 +43,7 @@ export default {
     data(){
         return{
             shiftValue: false,
+            capsValue: false,
             textArray: [],
             textOutput: '',
             firstrow: [
@@ -107,8 +108,11 @@ export default {
     methods: {
         onClickButton(value) {
             if(value == 'shift'){
+                this.capsValue = !this.capsValue
                 this.shiftValue = !this.shiftValue
-            }else if (value == "backspace") {
+            }else if (value == 'caps') {
+                this.capsValue = !this.capsValue
+            } else if (value == "backspace") {
                 this.textArray.pop()
                 this.textOutput = this.textArray.join('')
             } else if (value == "enter") {

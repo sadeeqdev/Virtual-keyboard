@@ -1,8 +1,13 @@
 <template>
-  <div class="flex justify-center mt-40">
-    <TextField  :textInput="textOutput" @keyBoardSwitch="onKeyboardSwitch"/>
+  <div class="mt-5 text-3xl flex justify-center">
+      <button class="rounded bg-slate-500 text-white px-4 py-2" @click="showKeyBoard">Toggle Keyboard</button>
   </div>
-  <KeyPad @clicked-keyboard="onClickButton" :keyboardValue="keyboardValue"/>
+  <div class="flex justify-center mt-32" @click="toggleKeyboard = true">
+    <TextField :textInput="textOutput" @keyBoardSwitch="onKeyboardSwitch"/>
+  </div>
+  <div v-if="toggleKeyboard">
+      <KeyPad @clicked-keyboard="onClickButton" :keyboardValue="keyboardValue"/>
+  </div>
 </template>
 
 <script>
@@ -15,7 +20,8 @@ export default {
   data(){
     return {
       textOutput: '',
-      keyboardValue: ''
+      keyboardValue: '',
+      toggleKeyboard: false
     }
   },
   methods: {
@@ -25,6 +31,9 @@ export default {
     onKeyboardSwitch(value) {
       this.textOutput = value
       this.keyboardValue = value
+    },
+    showKeyBoard(){
+      this.toggleKeyboard = !this.toggleKeyboard
     }
   }
 

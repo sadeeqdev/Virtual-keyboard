@@ -42,6 +42,7 @@ export default {
     },
     destroyed() {
         window.removeEventListener('keydown', this.setToggle);
+        window.removeEventListener('keyup', this.resetToggle);
     },
 
 }

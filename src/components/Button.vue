@@ -1,10 +1,16 @@
 <template>
     <div @click="textClick" class="disable-text-select h-6 w-5 md:w-8 md:h-8 lg:w-14 lg:h-14 xl:w-16 xl:h-16 shrink flex justify-center items-center rounded-md lg:rounded-lg shadow-sm bg-gray-50 hover:bg-gray-200 hover:cursor-pointer" :class="{ 'bg-gray-300': toggleButton}" @click.right.prevent>
         <div class="text-gray-900 text-sm lg:text-2xl">    
-            <div v-if="shiftValue == false">
+            <div v-if="shiftValue == false && capsValue == false">
                 {{value.lowercase}}
             </div>
-            <div v-if="shiftValue == true">
+            <div v-if="shiftValue == true && capsValue == false" >
+                {{value.uppercase}}
+            </div>
+            <div v-if="capsValue == true && shiftValue == true">
+                {{value.uppercase}}
+            </div>
+            <div v-if="capsValue == true && shiftValue == false">
                 {{value.uppercase}}
             </div>
         </div>
@@ -15,11 +21,13 @@
 export default {
     props: {
         value: Object,
-        checkShift: Boolean
+        checkShift: Boolean,
+        checkCaps: Boolean
     },
     data(){
         return{
             shiftValue: this.checkShift,
+            capsValue: this.checkCaps,
             toggleButton: false
         }
     },
@@ -27,6 +35,10 @@ export default {
         textClick(){
             if (this.shiftValue){
                 this.$emit('input-text', this.value.uppercase)
+            }else if(this.capsValue){
+                this.$emit('input-text', this.value.uppercase)
+            }else if (!this.capsValue) {
+                this.$emit('input-text', this.value.lowercase)
             }else{
                 this.$emit('input-text', this.value.lowercase)
             }
@@ -55,6 +67,9 @@ export default {
     watch: {
         checkShift: function (newVal) {
             this.shiftValue = newVal
+        },
+        checkCaps: function (newVal) {
+            this.capsValue = newVal
         }
     },
     created() {
