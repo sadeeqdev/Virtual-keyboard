@@ -1,5 +1,5 @@
 <template>
-    <div @click="textClick"  class="disable-text-select grow md:h-8 lg:h-14 xl:h-16 flex justify-center items-center rounded lg:rounded-lg shadow-sm bg-gray-50 hover:bg-gray-200 hover:cursor-pointer" :class="{ 'bg-gray-400': toggleButton}" @click.right.prevent>
+    <div @click="textClick"  class="disable-text-select grow md:h-8 lg:h-14 xl:h-16 flex justify-center items-center rounded lg:rounded-lg shadow-sm bg-gray-50 hover:bg-gray-200 hover:cursor-pointer" :class="{ 'bg-gray-300': toggleButton}" @click.right.prevent>
         <div class="text-gray-900 text-sm lg:text-xl">
             {{value}}
         </div>
@@ -10,35 +10,38 @@
 export default {
     props: {
         value: String,
+        keyCode: String,
     },
     data() {
         return {
-            toggleButton: false
+            toggleButton: false,
+            keyPressed: ''
         }
     },
     methods: {
         textClick() {
             this.$emit('input-text', this.value)
         },
-        doCommand(e) {
-            let cmd = String.fromCharCode(e.keyCode).toLowerCase();
-            console.log(e.keyCode)
-            
-            if (cmd === this.value) {
+        setToggle(e) {
+            let buttonCode = e.keyCode
+            if (buttonCode == this.keyCode) {
                 this.toggleButton = true
-                setTimeout(() => {
-                    this.toggleButton = false
-
-                }, 150)
+            }
+        },
+        resetToggle(e) {
+            let buttonCode = e.keyCode
+            if (buttonCode == this.keyCode) {
+                this.toggleButton = false
             }
         }
 
     },
     created() {
-        window.addEventListener('keypress', this.doCommand);
+        window.addEventListener('keydown', this.setToggle);
+        window.addEventListener('keyup', this.resetToggle);
     },
     destroyed() {
-        window.removeEventListener('keypress', this.doCommand);
+        window.removeEventListener('keydown', this.setToggle);
     },
 
 }

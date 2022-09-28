@@ -4,30 +4,30 @@
             <div v-for="rows, index in firstrow" :key="index" class="flex">
                 <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue"/>
             </div>
-            <GrowButton value="backspace" @input-text="onClickButton"/>  
+            <GrowButton value="backspace" keyCode="8" @input-text="onClickButton"/>  
         </div> 
         <div class="flex space-x-1 lg:space-x-2 justify-center">
-            <GrowButton value="tab"  @input-text="onClickButton"/>
+            <GrowButton value="tab"  keyCode="9" @input-text="onClickButton"/>
             <div v-for="rows, index in secondrow" :key="index" class="flex">
                 <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue"/>
             </div>
         </div>
         <div class="flex space-x-1 lg:space-x-2 justify-center">
-            <GrowButton value="caps" @input-text="onClickButton"/>
+            <GrowButton value="caps" keyCode="20" @input-text="onClickButton"/>
             <div v-for="rows, index in thirdrow" :key="index" class="flex">
                 <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue"/>
             </div>
-            <GrowButton value="enter" @input-text="onClickButton"/>
+            <GrowButton value="enter" keyCode="13" @input-text="onClickButton"/>
         </div>
         <div class="flex space-x-1 lg:space-x-2 justify-center">
-            <GrowButton value="shift" @input-text="onClickButton" />
+            <GrowButton value="shift" keyCode="16" @input-text="onClickButton" />
             <div v-for="rows, index in fourthrow" :key="index" class="flex">
                 <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue"/>
             </div>
-            <GrowButton value="shift"  @input-text="onClickButton"/>
+            <GrowButton value="shift" keyCode="16" @input-text="onClickButton"/>
         </div>
         <div class="flex space-x-2 justify-center" >
-            <GrowButton value=" " @input-text="onClickButton"/>
+            <GrowButton value=" " keyCode="32" @input-text="onClickButton"/>
         </div>
     </div>
 </template>

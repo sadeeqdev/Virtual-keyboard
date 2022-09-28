@@ -1,5 +1,5 @@
 <template>
-    <div @click="textClick" class="disable-text-select h-6 w-5 md:w-8 md:h-8 lg:w-14 lg:h-14 xl:w-16 xl:h-16 shrink flex justify-center items-center rounded-md lg:rounded-lg shadow-sm bg-gray-50 hover:bg-gray-200 hover:cursor-pointer" :class="{ 'bg-gray-400': toggleButton}" @click.right.prevent>
+    <div @click="textClick" class="disable-text-select h-6 w-5 md:w-8 md:h-8 lg:w-14 lg:h-14 xl:w-16 xl:h-16 shrink flex justify-center items-center rounded-md lg:rounded-lg shadow-sm bg-gray-50 hover:bg-gray-200 hover:cursor-pointer" :class="{ 'bg-gray-300': toggleButton}" @click.right.prevent>
         <div class="text-gray-900 text-sm lg:text-2xl">    
             <div v-if="shiftValue == false">
                 {{value.lowercase}}
@@ -25,20 +25,31 @@ export default {
     },
     methods:{
         textClick(){
-            if(this.checkShift){
+            if (this.shiftValue){
                 this.$emit('input-text', this.value.uppercase)
             }else{
                 this.$emit('input-text', this.value.lowercase)
             }
         },
-        doCommand(e) {
+        setToggle(e) {
             let cmd = String.fromCharCode(e.keyCode).toLowerCase();
             if ((this.shiftValue == false && cmd === this.value.lowercase) || ((this.shiftValue == true) && (cmd === this.value.uppercase || cmd === this.value.lowercase))){
                 this.toggleButton = true
-                setTimeout(() => {
-                    this.toggleButton = false
-                }, 150)
             }
+
+            if(e.keyCode == 16){
+                this.shiftValue = true
+            }
+        },
+        resetToggle(e) {
+            let cmd = String.fromCharCode(e.keyCode).toLowerCase();
+            if ((this.shiftValue == false && cmd === this.value.lowercase) || ((this.shiftValue == true) && (cmd === this.value.uppercase || cmd === this.value.lowercase))) {
+                this.toggleButton = false
+            }
+
+            // if (e.keyCode == 16) {
+            //     this.shiftValue = false
+            // }
         }
     },
     watch: {
@@ -47,10 +58,13 @@ export default {
         }
     },
     created() {
-        window.addEventListener('keypress', this.doCommand);
+        window.addEventListener('keydown', this.setToggle);
+        window.addEventListener('keyup', this.resetToggle);
     },
     destroyed() {
-        window.removeEventListener('keypress', this.doCommand);
+        window.removeEventListener('keypress', this.setToggle);
+        window.removeEventListener('keyup', this.resetToggle);
+
     },
 }
 </script>
