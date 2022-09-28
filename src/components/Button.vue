@@ -47,9 +47,9 @@ export default {
                 this.toggleButton = false
             }
 
-            // if (e.keyCode == 16) {
-            //     this.shiftValue = false
-            // }
+            if (e.keyCode == 16) {
+                this.shiftValue = false
+            }
         }
     },
     watch: {
