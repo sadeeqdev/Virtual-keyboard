@@ -4,7 +4,7 @@
             <div v-for="rows, index in firstrow" :key="index" class="flex">
                 <Button :value="rows"  @input-text="onClickButton"/>
             </div>
-            <GrowButton value="<=" @input-text="onClickButton"/>  
+            <GrowButton value="backspace" @input-text="onClickButton"/>  
         </div> 
         <div class="flex space-x-1 lg:space-x-2 justify-center">
             <GrowButton value="tab"  @input-text="onClickButton"/>
@@ -27,7 +27,7 @@
             <GrowButton value="shift"  @input-text="onClickButton"/>
         </div>
         <div class="flex space-x-2 justify-center" >
-            <GrowButton value="space" @input-text="onClickButton"/>
+            <GrowButton value=" " @input-text="onClickButton"/>
         </div>
     </div>
 </template>
