@@ -13,18 +13,18 @@
             </div>
         </div>
         <div class="flex space-x-1 lg:space-x-2 justify-center">
-            <GrowButton value="caps" keyCode="20" @input-text="onClickButton"/>
+            <GrowButton value="caps" keyCode="20" @input-text="onClickButton" :checkCaps="capsValue"/>
             <div v-for="rows, index in thirdrow" :key="index" class="flex">
                 <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue" :checkCaps="capsValue"/>
             </div>
             <GrowButton value="enter" keyCode="13" @input-text="onClickButton"/>
         </div>
         <div class="flex space-x-1 lg:space-x-2 justify-center">
-            <GrowButton value="shift" keyCode="16" @input-text="onClickButton" />
+            <GrowButton value="shift" keyCode="16" @input-text="onClickButton" :checkShift="shiftValue" />
             <div v-for="rows, index in fourthrow" :key="index" class="flex">
                 <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue" :checkCaps="capsValue"/>
             </div>
-            <GrowButton value="shift" keyCode="16" @input-text="onClickButton"/>
+            <GrowButton value="shift" keyCode="16" @input-text="onClickButton" :checkShift="shiftValue"/>
         </div>
         <div class="flex space-x-2 justify-center" >
             <GrowButton value=" " keyCode="32" @input-text="onClickButton"/>
@@ -128,6 +128,14 @@ export default {
             }
             this.$emit('clicked-keyboard', this.textOutput)
         },
+        removeChar(e){
+            if (e.keyCode == 8){
+                this.textArray.pop()
+                this.textOutput = this.textArray.join('')
+                this.$emit('clicked-keyboard', this.textOutput)
+            }
+
+        }
     },
     watch: {
         keyboardValue: function (newVal) {

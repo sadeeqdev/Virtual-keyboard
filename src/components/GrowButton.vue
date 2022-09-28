@@ -1,19 +1,27 @@
 <template>
-    <div @click="textClick"  class="disable-text-select grow md:h-8 lg:h-14 xl:h-16 flex justify-center items-center rounded lg:rounded-lg shadow-sm bg-gray-50 hover:bg-gray-200 hover:cursor-pointer" :class="{ 'bg-gray-300': toggleButton}" @click.right.prevent>
+    <div @click="textClick"  class="relative disable-text-select grow md:h-8 lg:h-14 xl:h-16 flex justify-center items-center rounded lg:rounded-lg shadow-sm bg-gray-50 hover:bg-gray-200 hover:cursor-pointer" :class="{ 'bg-gray-300': toggleButton}" @click.right.prevent>
         <div class="text-gray-900 text-sm lg:text-xl">
             {{value}}
         </div>
+        <div v-if="value == 'shift' && shiftValue == true || value == 'caps' && capsValue == true " class="absolute flex justify-self-end right-5">
+            <div class="w-2 h-2 rounded-full bg-green-600">
+            </div>
+        </div>
     </div>
-</template>
+</template> 
 
 <script>
 export default {
     props: {
         value: String,
         keyCode: String,
+        checkShift: Boolean,
+        checkCaps: Boolean
     },
     data() {
         return {
+            shiftValue: this.checkShift,
+            shiftValue: this.checkCaps,
             toggleButton: false,
             keyPressed: ''
         }
@@ -35,6 +43,14 @@ export default {
             }
         }
 
+    },
+    watch: {
+        checkShift: function (newVal) {
+            this.shiftValue = newVal
+        },
+        checkCaps: function (newVal) {
+            this.capsValue = newVal
+        }
     },
     created() {
         window.addEventListener('keydown', this.setToggle);

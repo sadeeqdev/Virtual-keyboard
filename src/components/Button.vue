@@ -52,11 +52,9 @@ export default {
             if(e.keyCode == 16){
                 this.capsValue = false
                 this.shiftValue = true
-            }else if(e.keyCode == 20){
-                this.capsValue = !this.capsValue
-                this.shiftValue = false
-
             }
+
+
         },
         resetToggle(e) {
             let cmd = e.key
@@ -85,7 +83,6 @@ export default {
     destroyed() {
         window.removeEventListener('keydown', this.setToggle);
         window.removeEventListener('keyup', this.resetToggle);
-
     },
 }
 </script>

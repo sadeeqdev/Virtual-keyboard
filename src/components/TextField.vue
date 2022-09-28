@@ -1,6 +1,6 @@
 <template>
     <div>
-        <textarea type="text" placeholder="Type something"  class="border border-1 border-gray-500 rounded-md text-2xl py-3 px-4" v-model="value" ref="textfield" @change="setInput"></textarea>
+        <textarea type="text" placeholder="Type something"  class="w-96 h-40 border border-1 border-gray-500 rounded-md text-2xl py-3 px-4" v-model="value" ref="textfield" @change="setInput"></textarea>
     </div>
 </template>
 
