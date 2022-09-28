@@ -27,11 +27,6 @@ export default {
         textInput: function (newVal) {
             this.value = newVal
             // this.$refs.textfield.focus()
-        },
-        value: function (val) {
-            if (val.length > 0) {
-                this.checkTextfield()
-            }
         }
     }
 }
