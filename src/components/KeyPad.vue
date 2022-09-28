@@ -37,6 +37,9 @@ import Button from './Button.vue';
 import GrowButton from './GrowButton.vue';
 export default {
     components: { Button, GrowButton },
+    props: {
+        keyboardValue: String
+    },
     data(){
         return{
             shiftValue: false,
@@ -121,6 +124,13 @@ export default {
             }
             this.$emit('clicked-keyboard', this.textOutput)
         }
-}
+    },
+    watch: {
+        keyboardValue: function (newVal) {
+            this.textArray = newVal.split('')
+            this.textOutput = this.textArray.join('')
+            this.$emit('clicked-keyboard', this.textOutput)
+        }
+    }
 }
 </script>

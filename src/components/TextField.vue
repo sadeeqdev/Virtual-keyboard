@@ -1,6 +1,6 @@
 <template>
     <div>
-        <textarea type="text" placeholder="Type something"  class="border border-1 border-gray-500 rounded-md text-2xl py-3 px-4" :value="value"></textarea>
+        <textarea type="text" placeholder="Type something"  class="border border-1 border-gray-500 rounded-md text-2xl py-3 px-4" v-model="value" ref="textfield" @change="setInput"></textarea>
     </div>
 </template>
 
@@ -14,9 +14,24 @@ export default {
             value: this.textInput,
         }
     },
+    methods:{
+        checkTextfield() {
+                this.$refs.textfield.focus()
+        },
+        setInput(){
+            this.value = this.value
+            this.$emit('keyBoardSwitch', this.value)
+        }
+    },
     watch: {
         textInput: function (newVal) {
             this.value = newVal
+            // this.$refs.textfield.focus()
+        },
+        value: function (val) {
+            if (val.length > 0) {
+                this.checkTextfield()
+            }
         }
     }
 }

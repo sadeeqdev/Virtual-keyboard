@@ -31,7 +31,6 @@ export default {
             }
             
         },
-
     },
     watch: {
         checkShift: function (newVal) {
