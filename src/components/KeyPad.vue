@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute left-0 right-0 bottom-10 w-1/1 xl:w-5/6 2xl:w-7/12 mx-2 lg:mx-5 xl:mx-auto h-auto bg-gray-300 rounded-sm lg:rounded-lg px-1.5 lg:px-2 space-y-1 lg:space-y-2 py-1.5 lg:py-2">
+    <div class="absolute left-0 right-0 bottom-10 w-1/1 xl:w-5/6 2xl:w-7/12 mx-2 lg:mx-5 xl:mx-auto h-auto bg-gray-300 rounded-sm lg:rounded-lg px-1.5 lg:px-2 space-y-1 lg:space-y-2 py-1.5 lg:py-2" @click.right.prevent>
         <div class="flex space-x-1 lg:space-x-2 justify-center">
             <div v-for="rows, index in firstrow" :key="index" class="flex">
                 <Button :value="rows"  @input-text="onClickButton" :checkShift="shiftValue"/>
