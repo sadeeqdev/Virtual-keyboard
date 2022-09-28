@@ -38,10 +38,5 @@ export default {
             this.shiftValue = newVal
         }
     }
-
 }
 </script>
-
-<style>
-
-</style>
