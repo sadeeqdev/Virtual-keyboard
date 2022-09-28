@@ -1,8 +1,8 @@
 <template>
-  <div class="mt-5 text-3xl flex justify-center">
+  <div class="xl-10 mt-10 lg:mt-16 text-3xl flex justify-center">
       <button class="rounded bg-slate-500 text-white px-4 py-2" @click="showKeyBoard">Toggle Keyboard</button>
   </div>
-  <div class="flex justify-center mt-32" @click="toggleKeyboard = true">
+  <div class="flex justify-center mt-10 xl:mt-16" @click="toggleKeyboard = true">
     <TextField :textInput="textOutput" @keyBoardSwitch="onKeyboardSwitch"/>
   </div>
   <div v-show="toggleKeyboard">

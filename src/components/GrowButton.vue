@@ -3,8 +3,8 @@
         <div class="text-gray-900 text-sm lg:text-xl">
             {{value}}
         </div>
-        <div v-if="value == 'shift' && shiftValue == true || value == 'caps' && capsValue == true " class="absolute flex justify-self-end right-5">
-            <div class="w-2 h-2 rounded-full bg-green-600">
+        <div v-if="value == 'shift' && shiftValue == true || value == 'caps' && capsValue == true " class="absolute flex justify-self-end justify-end right-1 lg:right-5">
+            <div class="w-1 h-1 lg:w-2 md:h-2 rounded-full bg-green-600">
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@ export default {
     data() {
         return {
             shiftValue: this.checkShift,
-            shiftValue: this.checkCaps,
+            capsValue: this.checkCaps,
             toggleButton: false,
             keyPressed: ''
         }

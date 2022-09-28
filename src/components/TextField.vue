@@ -1,6 +1,15 @@
 <template>
-    <div>
-        <textarea type="text" placeholder="Type something"  class="w-96 h-40 border border-1 border-gray-500 rounded-md text-2xl py-3 px-4" v-model="value" ref="textfield" @change="setInput"></textarea>
+    <div class="border border-1 border-gray-400 rounded py-0 my-0" :class="{ 'border-gray-800 outline-3': setFocus}">
+        <textarea 
+            type="text" 
+            placeholder="Type something"  
+            class="w-11/12 lg:w-96 h-40 rounded-md text-2xl py-3 px-4 outline-0 border-0" 
+            v-model="value" 
+            v-on:focusin="setFocus = true"
+            ref="textfield" 
+            autocorrect="no"
+            autocomplete="no"
+            @change="setInput"></textarea>
     </div>
 </template>
 
@@ -12,6 +21,7 @@ export default {
     data(){
         return{
             value: this.textInput,
+            setFocus: false
         }
     },
     methods:{
