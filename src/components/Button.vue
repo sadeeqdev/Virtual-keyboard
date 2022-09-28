@@ -32,8 +32,8 @@ export default {
             }
         },
         setToggle(e) {
-            let cmd = String.fromCharCode(e.keyCode).toLowerCase();
-            if ((this.shiftValue == false && cmd === this.value.lowercase) || ((this.shiftValue == true) && (cmd === this.value.uppercase || cmd === this.value.lowercase))){
+            let cmd = e.key
+            if ((this.shiftValue == false && cmd == this.value.lowercase) || ((this.shiftValue == true) && (cmd == this.value.uppercase || cmd == this.value.lowercase))){
                 this.toggleButton = true
             }
 
@@ -42,8 +42,8 @@ export default {
             }
         },
         resetToggle(e) {
-            let cmd = String.fromCharCode(e.keyCode).toLowerCase();
-            if ((this.shiftValue == false && cmd === this.value.lowercase) || ((this.shiftValue == true) && (cmd === this.value.uppercase || cmd === this.value.lowercase))) {
+            let cmd = e.key
+            if ((this.shiftValue == false && cmd == this.value.lowercase) || ((this.shiftValue == true) && (cmd == this.value.uppercase || cmd == this.value.lowercase))) {
                 this.toggleButton = false
             }
 
@@ -62,7 +62,7 @@ export default {
         window.addEventListener('keyup', this.resetToggle);
     },
     destroyed() {
-        window.removeEventListener('keypress', this.setToggle);
+        window.removeEventListener('keydown', this.setToggle);
         window.removeEventListener('keyup', this.resetToggle);
 
     },
