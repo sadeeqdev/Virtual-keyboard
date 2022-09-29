@@ -2,7 +2,7 @@
     <div 
         @click="textClick" 
         class="disable-text-select h-7 w-5 md:w-8 md:h-8 lg:w-14 lg:h-14 xl:w-16 xl:h-16 shrink flex justify-center items-center rounded-md lg:rounded-lg shadow-md hover:bg-gray-100 bg-gray-50 hover:cursor-pointer" 
-        :class="{ 'bg-gray-300': toggleButton, 'bg-slate-300 hover:bg-slate-300': clickEffect}" 
+        :class="{ 'bg-gray-300': toggleButton, 'bg-slate-200 hover:bg-slate-200': clickEffect}" 
         @click.right.prevent
     >
         <div class="text-gray-900 text-sm lg:text-2xl">    
