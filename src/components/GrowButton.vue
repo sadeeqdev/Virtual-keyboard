@@ -1,5 +1,10 @@
 <template>
-    <div @click="textClick"  class="relative disable-text-select grow md:h-8 lg:h-14 xl:h-16 flex justify-center items-center rounded lg:rounded-lg shadow-sm bg-gray-50 hover:bg-gray-200 hover:cursor-pointer" :class="{ 'bg-gray-300': toggleButton}" @click.right.prevent>
+    <div 
+        @click="textClick"  
+        class="relative disable-text-select grow md:h-8 lg:h-14 xl:h-16 flex justify-center items-center rounded lg:rounded-lg shadow-md bg-gray-50 hover:cursor-pointer" 
+        :class="{'bg-gray-300': toggleButton, 'bg-slate-200': clickEffect}" 
+        @click.right.prevent
+    >
         <div class="text-gray-900 text-sm lg:text-xl">
             {{value}}
         </div>
@@ -23,11 +28,16 @@ export default {
             shiftValue: this.checkShift,
             capsValue: this.checkCaps,
             toggleButton: false,
-            keyPressed: ''
+            keyPressed: '',
+            clickEffect: false
         }
     },
     methods: {
         textClick() {
+            this.clickEffect = true
+            setTimeout(() => {
+                this.clickEffect = false
+            }, 100)
             this.$emit('input-text', this.value)
         },
         setToggle(e) {
