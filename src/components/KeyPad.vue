@@ -32,7 +32,7 @@
             <GrowButton value="shift" keyCode="16" @input-text="onClickButton" :checkShift="shiftValue"/>
         </div>
         <div class="flex space-x-2 justify-center" >
-            <GrowButton value="space " keyCode="32" @input-text="onClickButton"/>
+            <GrowButton value="space" keyCode="32" @input-text="onClickButton"/>
         </div>
         
     </div>
@@ -127,8 +127,10 @@ export default {
             } else if (value == "tab") {
                 this.textArray.push('      ')
                 this.textOutput = this.textArray.join('')
-            }
-            else {
+            } else if (value == "space") {
+                this.textArray.push(' ')
+                this.textOutput = this.textArray.join('')
+            }else {
                 this.textArray.push(value)
                 this.textOutput = this.textArray.join('')
             }
